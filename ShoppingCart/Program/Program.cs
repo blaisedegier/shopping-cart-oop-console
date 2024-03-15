@@ -14,6 +14,9 @@ namespace Program
             // Add Products
             shoppingCart.AddProduct(phone);
             shoppingCart.AddProduct(shirt);
+            phone.GetInfo();
+            Console.WriteLine("\n");
+            shirt.GetInfo();
             // Remove Product
             shoppingCart.RemoveProduct(phone);
         }

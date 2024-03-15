@@ -29,8 +29,8 @@
             Console.WriteLine("Name: " + base.Name);
             Console.WriteLine("Price: " + base.Price);
             Console.WriteLine("Category: " + base.Category);
-            Console.WriteLine("Size" + this.size);
-            Console.WriteLine("Color:" + this.color);
+            Console.WriteLine("Size: " + this.size);
+            Console.WriteLine("Color: " + this.color);
         }
     }
 }

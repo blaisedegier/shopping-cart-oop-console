@@ -30,8 +30,8 @@
             Console.WriteLine("Name: " + base.Name);
             Console.WriteLine("Price: " + base.Price);
             Console.WriteLine("Category: " + base.Category);
-            Console.WriteLine("Brand" + this.brand);
-            Console.WriteLine("Model:" + this.model);
+            Console.WriteLine("Brand: " + this.brand);
+            Console.WriteLine("Model: " + this.model);
         }
     }
 }
