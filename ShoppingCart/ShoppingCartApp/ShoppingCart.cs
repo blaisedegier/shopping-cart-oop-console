@@ -33,11 +33,18 @@
         }
 
         // Removes a product from the shopping cart.
+        /*
+         * Code attribution
+         * Jon Schneider
+         * answered Sep 11, 2014 at 18:00
+         * LINQ one-line solution:
+         * https://stackoverflow.com/questions/457453/remove-element-of-a-regular-array
+         */
         public void RemoveProduct(Product product)
         {
-            int oldLength = products.Length;
+            int temp = products.Length;
             products = products.Where(p => p != product).ToArray();
-            if (oldLength != products.Length)
+            if (temp != products.Length)
             {
                 itemCount--;
                 Console.WriteLine(product.Name + " removed from the shopping cart.");
