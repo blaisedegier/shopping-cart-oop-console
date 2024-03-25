@@ -27,19 +27,25 @@
         // Adds a product to the shopping cart.
         public void AddProduct(Product product)
         {
-            products[itemCount++] = product;
+            products[itemCount] = product;
             itemCount++;
+            Console.WriteLine(product.Name + " added to the shopping cart.");
         }
+
         // Removes a product from the shopping cart.
         public void RemoveProduct(Product product)
         {
-            int index = Array.IndexOf(products, product);
-            for (int i = index + 1; i < products.Length; i++)
+            int oldLength = products.Length;
+            products = products.Where(p => p != product).ToArray();
+            if (oldLength != products.Length)
             {
-                products[i - 1] = products[i];
+                itemCount--;
+                Console.WriteLine(product.Name + " removed from the shopping cart.");
             }
-            products[products.Length - 1] = null;
-            itemCount--;
+            else
+            {
+                Console.WriteLine("Product not found in the shopping cart.");
+            }
         }
     }
 }
