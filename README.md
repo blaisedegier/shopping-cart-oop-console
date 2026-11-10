@@ -41,7 +41,7 @@ decides what to print. Prices are `decimal`.
 
 ## Running it
 
-Prerequisites: the [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0). Runs on Windows, macOS and Linux.
+Prerequisites: the [.NET 10 SDK](https://dotnet.microsoft.com/download/dotnet/10.0). Runs on Windows, macOS and Linux.
 
 ```bash
 git clone https://github.com/blaisedegier/shopping-cart-oop-console.git
@@ -52,7 +52,7 @@ dotnet run --project ShoppingCart/Program/Program.csproj -c Release
 
 ## Tech
 
-C# 12, .NET 8 (`net8.0`), console app plus class library. No NuGet packages.
+C# 14, .NET 10 (`net10.0`), console app plus class library. No NuGet packages.
 
 ## Known limitations
 
