@@ -1,18 +1,23 @@
 ﻿namespace ShoppingCartApp
 {
-    // An enumeration of the available product categories mentioned below:
-    // Enum Values are:
+    /// <summary>
+    /// The categories a product can belong to. Each has a matching <see cref="Product"/> subclass.
+    /// </summary>
     public enum ProductCategory
     {
-        // Clothing products
+        /// <summary>Clothing, see <see cref="ClothingProduct"/>.</summary>
         Clothing,
-        // Electronics products
+
+        /// <summary>Electronics, see <see cref="ElectronicsProduct"/>.</summary>
         Electronics,
-        // Home products
+
+        /// <summary>Home goods, see <see cref="HomeProduct"/>.</summary>
         Home,
-        // Beauty products
+
+        /// <summary>Beauty products, see <see cref="BeautyProduct"/>.</summary>
         Beauty,
-        // Grocery products
+
+        /// <summary>Groceries, see <see cref="GroceriesProduct"/>.</summary>
         Groceries
     }
 }

@@ -1,40 +1,37 @@
 ﻿namespace ShoppingCartApp
 {
-    // The base class for all products.
+    /// <summary>
+    /// The base class for every product: a name, a price and a category.
+    /// </summary>
     public class Product
     {
-        // Fields
-        // The name of the product.
-        private string name;
-        // The price of the product.
-        private double price;
-        // The category of the product.
-        private ProductCategory category;
-
-        // Properties
-        // Gets the name of the product.
-        public string Name { get { return name; } set { name = value; } }
-        // Gets the price of the product.
-        public double Price { get { return price; } set { price = value; } }
-        // Gets the category of the product.
-        public ProductCategory Category { get { return category; } set { category = value; } }
-
-        // Constructors
-        // Creates a new instance of the Product class with the specified name, price & category.
-        public Product(string name, double price, ProductCategory category)
-        { 
-            this.name = name;
-            this.price = price;
-            this.category = category;
+        /// <summary>
+        /// Creates a product with the given name, price and category.
+        /// </summary>
+        public Product(string name, decimal price, ProductCategory category)
+        {
+            Name = name;
+            Price = price;
+            Category = category;
         }
 
-        // Methods
-        // Gets the information about the product.
+        /// <summary>The product's display name.</summary>
+        public string Name { get; set; }
+
+        /// <summary>The unit price.</summary>
+        public decimal Price { get; set; }
+
+        /// <summary>The category the product belongs to.</summary>
+        public ProductCategory Category { get; set; }
+
+        /// <summary>
+        /// Writes the product's details to the console. Derived classes call this and then add their own fields.
+        /// </summary>
         public virtual void GetInfo()
         {
-            Console.WriteLine("Name: " + this.name);
-            Console.WriteLine("Price: " + this.price);
-            Console.WriteLine("Category: " + this.category);
+            Console.WriteLine("Name: " + Name);
+            Console.WriteLine($"Price: {Price:0.00}");
+            Console.WriteLine("Category: " + Category);
         }
     }
 }

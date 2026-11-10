@@ -1,36 +1,32 @@
 ﻿namespace ShoppingCartApp
 {
-    // A derived class of Product for home products.
+    /// <summary>
+    /// A home product, which adds a size and a colour to the base product.
+    /// </summary>
     public class HomeProduct : Product
     {
-        // Fields
-        // The size of the home product.
-        private string size;
-        // The color of the home product.
-        private string color;
-
-        // Properties
-        // Gets the size of the home product.
-        public string Size { get { return size; } }
-        // Gets the color of the home product.
-        public string Color { get { return color; } }
-
-        // Creates a new instance of the HomeProduct class with the specified name, price, category, size, and color.
-        public HomeProduct(string name, double price, ProductCategory category, string size, string color) : base(name, price, category)
+        /// <summary>
+        /// Creates a home product with the given name, price, category, size and colour.
+        /// </summary>
+        public HomeProduct(string name, decimal price, ProductCategory category, string size, string color)
+            : base(name, price, category)
         {
-            this.size = size;
-            this.color = color;
+            Size = size;
+            Color = color;
         }
 
-        // Methods
-        // Gets the information about the home product.
+        /// <summary>The size of the item, as free text.</summary>
+        public string Size { get; }
+
+        /// <summary>The colour of the item.</summary>
+        public string Color { get; }
+
+        /// <inheritdoc />
         public override void GetInfo()
         {
-            Console.WriteLine("Name: " + base.Name);
-            Console.WriteLine("Price: " + base.Price);
-            Console.WriteLine("Category: " + base.Category);
-            Console.WriteLine("Size: " + this.size);
-            Console.WriteLine("Color: " + this.color);
+            base.GetInfo();
+            Console.WriteLine("Size: " + Size);
+            Console.WriteLine("Color: " + Color);
         }
     }
 }

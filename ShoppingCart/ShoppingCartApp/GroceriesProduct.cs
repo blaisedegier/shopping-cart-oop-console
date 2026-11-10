@@ -1,41 +1,40 @@
 ﻿namespace ShoppingCartApp
 {
-    // A derived class of Product for groceries products.
+    /// <summary>
+    /// A grocery product, which adds a quantity and the number of shopping bags that quantity needs.
+    /// </summary>
     public class GroceriesProduct : Product
     {
-        // Fields
-        // The quantity of the groceries product.
-        private int quantity;
-        // The shoppingBags of the groceries product.
-        private int shoppingBags;
+        /// <summary>How many units fit in one shopping bag.</summary>
+        public const int UnitsPerBag = 5;
 
-        // Properties
-        // Gets the quantity of the groceries product.
-        public int Quantity { get { return quantity; } }
-        // Gets the shoppingBags of the groceries product.
-        public int ShoppingBags { get { return shoppingBags; } }
-
-        // Creates a new instance of the groceries class with the specified name, price, category, quantity, and shoppingBags.
-        public GroceriesProduct(string name, double price, ProductCategory category, int quantity) : base(name, price, category)
+        /// <summary>
+        /// Creates a grocery product with the given name, price, category and quantity.
+        /// </summary>
+        public GroceriesProduct(string name, decimal price, ProductCategory category, int quantity)
+            : base(name, price, category)
         {
-            this.quantity = quantity;
-            this.shoppingBags = CalculateShoppingBags();
+            Quantity = quantity;
+            ShoppingBags = CalculateShoppingBags();
         }
 
-        // Methods
-        // Calculate the total amounut of shopping bags needed
-        public int CalculateShoppingBags()
-        {
-            return (int)Math.Ceiling((double)this.quantity / 5);
-        }
-        // Gets the information about the groceries product.
+        /// <summary>The number of units.</summary>
+        public int Quantity { get; }
+
+        /// <summary>The number of shopping bags needed for <see cref="Quantity"/>.</summary>
+        public int ShoppingBags { get; }
+
+        /// <summary>
+        /// Returns the number of bags needed: one per <see cref="UnitsPerBag"/> units, rounded up.
+        /// </summary>
+        public int CalculateShoppingBags() => (Quantity + UnitsPerBag - 1) / UnitsPerBag;
+
+        /// <inheritdoc />
         public override void GetInfo()
         {
-            Console.WriteLine("Name: " + base.Name);
-            Console.WriteLine("Price: " + base.Price);
-            Console.WriteLine("Category: " + base.Category);
-            Console.WriteLine("Quantity: " + this.quantity);
-            Console.WriteLine("Shopping Bags: " + this.shoppingBags);
+            base.GetInfo();
+            Console.WriteLine("Quantity: " + Quantity);
+            Console.WriteLine("Shopping Bags: " + ShoppingBags);
         }
     }
 }
