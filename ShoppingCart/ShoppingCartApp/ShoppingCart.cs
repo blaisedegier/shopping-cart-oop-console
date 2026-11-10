@@ -1,58 +1,54 @@
 ﻿namespace ShoppingCartApp
 {
-    // A class that represents a shopping cart.
+    /// <summary>
+    /// A shopping cart that holds up to a fixed number of products.
+    /// </summary>
     public class ShoppingCart
     {
-        // Fields
-        // The products in the shopping cart.
-        private Product[] products;
-        // The number of items in the shopping cart.
-        private int itemCount;
+        private readonly List<Product> products;
 
-        // Properties
-        // Gets the array of products in the shopping cart.
-        public Product[] Products { get { return products; } }
-        // Gets the number of items in the shopping cart.
-        public int ItemCount { get { return itemCount; } }
-
-        // Constructors
-        // Creates a new instance of the ShoppingCart class with the specified capacity.
+        /// <summary>
+        /// Creates an empty cart that can hold at most <paramref name="capacity"/> products.
+        /// </summary>
+        /// <exception cref="ArgumentOutOfRangeException">The capacity is less than 1.</exception>
         public ShoppingCart(int capacity)
         {
-            products = new Product[capacity];
-            itemCount = 0;
-        }
-        
-        // Methods
-        // Adds a product to the shopping cart.
-        public void AddProduct(Product product)
-        {
-            products[itemCount] = product;
-            itemCount++;
-            Console.WriteLine(product.Name + " added to the shopping cart.");
+            ArgumentOutOfRangeException.ThrowIfLessThan(capacity, 1);
+            Capacity = capacity;
+            products = new List<Product>(capacity);
         }
 
-        // Removes a product from the shopping cart.
-        /*
-         * Code attribution
-         * Jon Schneider
-         * answered Sep 11, 2014 at 18:00
-         * LINQ one-line solution:
-         * https://stackoverflow.com/questions/457453/remove-element-of-a-regular-array
-         */
-        public void RemoveProduct(Product product)
+        /// <summary>The maximum number of products the cart can hold. Removing a product does not change it.</summary>
+        public int Capacity { get; }
+
+        /// <summary>The products currently in the cart, in the order they were added.</summary>
+        public IReadOnlyList<Product> Products => products;
+
+        /// <summary>The number of products currently in the cart.</summary>
+        public int ItemCount => products.Count;
+
+        /// <summary>Whether the cart has reached its capacity.</summary>
+        public bool IsFull => products.Count >= Capacity;
+
+        /// <summary>
+        /// Adds a product if there is room.
+        /// </summary>
+        /// <returns><see langword="true"/> if the product was added; <see langword="false"/> if the cart is full.</returns>
+        public bool AddProduct(Product product)
         {
-            int temp = products.Length;
-            products = products.Where(p => p != product).ToArray();
-            if (temp != products.Length)
+            ArgumentNullException.ThrowIfNull(product);
+            if (IsFull)
             {
-                itemCount--;
-                Console.WriteLine(product.Name + " removed from the shopping cart.");
+                return false;
             }
-            else
-            {
-                Console.WriteLine("Product not found in the shopping cart.");
-            }
+            products.Add(product);
+            return true;
         }
+
+        /// <summary>
+        /// Removes a product from the cart.
+        /// </summary>
+        /// <returns><see langword="true"/> if the product was in the cart and has been removed; otherwise <see langword="false"/>.</returns>
+        public bool RemoveProduct(Product product) => products.Remove(product);
     }
 }
