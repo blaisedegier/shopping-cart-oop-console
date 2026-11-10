@@ -59,3 +59,7 @@ C# 14, .NET 10 (`net10.0`), console app plus class library. No NuGet packages.
 - The products and actions are fixed in `Program.cs`; there is no interactive input.
 - A cart holds products, not quantities: the same product object can be added more than once and takes a slot each time.
 - No automated tests; CI builds the solution and runs the demo.
+
+## Licence
+
+MIT. See [LICENSE](LICENSE).
